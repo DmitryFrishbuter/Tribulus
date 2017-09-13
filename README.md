@@ -11,7 +11,7 @@
 [![License](https://img.shields.io/cocoapods/l/Tribulus.svg?style=flat)](http://cocoadocs.org/docsets/Tribulus)
 
 **Tribulus** provides very convenient way to compose attributed strings.
-It is a framework based on usage custom `Attributes` class and nice chaining syntax.
+It is a framework based on applying custom `Attributes` class and nice chaining syntax.
 
 # Installation 🏁
 
