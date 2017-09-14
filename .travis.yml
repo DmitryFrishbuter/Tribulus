@@ -1,6 +1,7 @@
 
 language: objective-c
 osx_image: xcode8.3
+xcode_workspace: Tribulus.xcworkspace
 env:
     global:
     - PROJECT=Tribulus.xcodeproj
