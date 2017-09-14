@@ -2,3 +2,5 @@
 language: objective-c
 osx_image: xcode8.3
 xcode_workspace: Tribulus.xcworkspace
+before_script: before_script.sh
+script: script.sh
