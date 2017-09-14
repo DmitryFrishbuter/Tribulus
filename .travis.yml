@@ -6,7 +6,7 @@ env:
     global:
     - PROJECT=Tribulus.xcodeproj
     - IOS_FRAMEWORK_SCHEME="Tribulus"
-    - IOS_SDK=iphonesimulator10.3
+    - IOS_SDK=iphonesimulator10.3.1
     matrix:
     - DESTINATION="OS=10.3.1,name=iPhone 7 Plus"     SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"
 
