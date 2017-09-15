@@ -1,11 +1,10 @@
 
 language: objective-c
 osx_image: xcode8.3
-xcode_workspace: Tribulus.xcworkspace
 
 env:
     global:
-    - PROJECT=Tribulus.xcodeproj
+    - WORKSPACE=Tribulus.xcworkspace
     - IOS_FRAMEWORK_SCHEME="Tribulus"
     - IOS_SDK=iphonesimulator10.3.1
     matrix:
@@ -13,4 +12,4 @@ env:
 
 script: 
   - set -euxo pipefail
-  - xcodebuild -project "$PROJECT" -scheme "$IOS_FRAMEWORK_SCHEME" -sdk "$IOS_SDK" -destination "$DESTINATION" build test | xcpretty -c --test --color
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -sdk "$IOS_SDK" -destination "$DESTINATION" build test | xcpretty -c --test --color
