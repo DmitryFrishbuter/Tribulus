@@ -16,4 +16,5 @@ script:
      -project "$PROJECT" \
      -scheme "$IOS_FRAMEWORK_SCHEME" \
      -destination "$DESTINATION" \
-     build test | xcpretty -c --test --color
+     -enableCodeCoverage YES build test 
+     - bash <(curl -s https://codecov.io/bash) -cF ios
