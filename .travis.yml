@@ -12,4 +12,8 @@ env:
 
 script: 
   - set -o pipefail
-  - xcodebuild -project "$PROJECT" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" build test | xcpretty -c --test --color
+  - xcodebuild \
+     -project "$PROJECT" \
+     -scheme "$IOS_FRAMEWORK_SCHEME" \
+     -destination "$DESTINATION" \
+     build test | xcpretty -c --test --color
