@@ -12,5 +12,7 @@ env:
 
 script: 
   - set -o pipefail
-  - xcodebuild -project "$PROJECT" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -enableCodeCoverage YES build test 
+  - xcodebuild -project "$PROJECT" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -enableCodeCoverage YES build test
+  
+after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
