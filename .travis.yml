@@ -16,3 +16,6 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
+  - github_changelog_generator
+  - git add . CHANGELOG.md
+  - git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
