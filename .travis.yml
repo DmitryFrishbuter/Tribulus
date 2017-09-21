@@ -7,7 +7,7 @@ branches:
 
 env:
     global:
-    - PROJECT=Tribulus.xcodeproj
+    - WORKSPACE=Tribulus.xcworkspace
     - IOS_FRAMEWORK_SCHEME="Tribulus"
     - IOS_SDK=iphonesimulator10.3.1
     matrix:
@@ -23,7 +23,7 @@ before_script:
 
 script: 
   - set -o pipefail
-  - xcodebuild -project "$PROJECT" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -enableCodeCoverage YES build test | xcpretty -c --test --color
+  - xcodebuild -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -enableCodeCoverage YES build test | xcpretty -c --test --color
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
