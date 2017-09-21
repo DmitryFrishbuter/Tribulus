@@ -29,8 +29,8 @@ after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
   
 deploy:
-        provider: releases
-        api_key: $GITHUB_OAUTH_TOKEN
-        skip_cleanup: true
-        on:
-          tags: true
+    provider: releases
+    api_key: $GITHUB_OAUTH_TOKEN
+    skip_cleanup: true
+    on:
+      tags: true
