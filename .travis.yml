@@ -10,6 +10,10 @@ env:
     matrix:
     - DESTINATION="platform=iOS Simulator,OS=10.3.1,name=iPhone 7"     SCHEME="$IOS_FRAMEWORK_SCHEME"
     
+notifications:
+    slack: travis-rosberry:MzKmgUnDtHBzXZOTWSuTcB7M
+    email: false
+    
 before_script:
     gem install github_changelog_generator
 
