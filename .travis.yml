@@ -27,7 +27,10 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
-  - github_changelog_generator
-  - git add . CHANGELOG.md
-  - git commit -a -m "Travis build: $TRAVIS_BUILD_NUMBER"
-  - git push -a
+  
+deploy:
+        provider: releases
+        api_key: $GITHUB_OAUTH_TOKEN
+        skip_cleanup: true
+        on:
+          tags: true
