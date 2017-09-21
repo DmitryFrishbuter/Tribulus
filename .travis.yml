@@ -23,7 +23,11 @@ before_script:
 
 script: 
   - set -o pipefail
-  - xcodebuild -workspace "$WORKSPACE" -scheme "$IOS_FRAMEWORK_SCHEME" -destination "$DESTINATION" -enableCodeCoverage YES build test | xcpretty -c --test --color
+  - xcodebuild \
+  -workspace "$WORKSPACE" \
+  -scheme "$IOS_FRAMEWORK_SCHEME" \
+  -destination "$DESTINATION" \
+  -enableCodeCoverage YES build test | xcpretty -c --test --color
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
