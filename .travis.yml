@@ -23,7 +23,8 @@ before_script:
 
 script: 
   - set -o pipefail
-  - xcodebuild >
+  - > 
+      xcodebuild
       -workspace "$WORKSPACE"
       -scheme "$IOS_FRAMEWORK_SCHEME"
       -destination "$DESTINATION"
