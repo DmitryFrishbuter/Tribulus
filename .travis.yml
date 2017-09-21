@@ -30,3 +30,4 @@ after_success:
   - github_changelog_generator
   - git add . CHANGELOG.md
   - git commit -a -m "Travis build: $TRAVIS_BUILD_NUMBER"
+  - git push -a
