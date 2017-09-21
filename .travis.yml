@@ -15,8 +15,7 @@ notifications:
     email: false
     
 before_script:
-    pod --version
-    gem install github_changelog_generator
+  gem install github_changelog_generator
 
 script: 
   - set -o pipefail
