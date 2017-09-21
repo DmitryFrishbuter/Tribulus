@@ -28,6 +28,12 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
+  - >
+      github_changelog_generator 
+      -u Dmitry Frishbuter 
+      -p Tribulus
+      github_changelog_generator 
+      DmitryFrishbuter/Tribulus
   
 deploy:
     provider: releases
