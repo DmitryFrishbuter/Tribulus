@@ -38,6 +38,7 @@ after_success:
   - git checkout -b master
   - git add . CHANGELOG.md
   - git commit -a -m "Travis build"
+  - curl -u DmitryFrishbuter:$GITHUB_OAUTH_TOKEN https://api.github.com/user
   - git push -q -u origin master
   
 deploy:
