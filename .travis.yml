@@ -35,10 +35,11 @@ after_success:
       DmitryFrishbuter/Tribulus
   - git config --global user.email "travis@travis-ci.org"
   - git config --global user.name "Travis CI"
+  - git config --global github.token "$GITHUB_OAUTH_TOKEN"
   - git checkout -b master
   - git add . CHANGELOG.md
   - git commit -a -m "Travis build"
-  - git push -q -u origin master https://"$GITHUB_OAUTH_TOKEN"@github.com/DmitryFrishbuter/Tribulus.git
+  - git push -q -u origin master
   
 deploy:
     provider: releases
