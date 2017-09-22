@@ -36,6 +36,7 @@ after_success:
   - git checkout -b master
   - git add . CHANGELOG.md
   - git commit -a -m "Travis build: $TRAVIS_BUILD_NUMBER"
+  - git remote add origin https://"$GITHUB_OAUTH_TOKEN"@github.com/DmitryFrishbuter/Tribulus.git
   - git push --quiet -u origin master
   
 deploy:
