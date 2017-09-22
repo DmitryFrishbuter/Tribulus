@@ -34,10 +34,8 @@ after_success:
       -p Tribulus
       github_changelog_generator 
       DmitryFrishbuter/Tribulus
-      
-before_deploy:
-    chmod +x push.sh
-    push.sh
+  - chmod +x push.sh
+  push.sh
   
 deploy:
     provider: releases
