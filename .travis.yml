@@ -3,7 +3,7 @@ osx_image: xcode8.3
 
 env:
     global:
-    - WORKSPACE=Tribulus.xcworkspace
+    - PROJECT=Tribulus.xcodeproj
     - IOS_FRAMEWORK_SCHEME="Tribulus"
     - IOS_SDK=iphonesimulator10.3.1
     matrix:
@@ -20,7 +20,7 @@ script:
   - set -o pipefail
   - > 
       xcodebuild
-      -workspace "$WORKSPACE"
+      -project "$PROJECT"
       -scheme "$IOS_FRAMEWORK_SCHEME"
       -destination "$DESTINATION"
       -enableCodeCoverage YES build test | xcpretty -c --test --color
