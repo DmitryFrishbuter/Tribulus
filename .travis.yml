@@ -33,10 +33,13 @@ after_success:
       -p Tribulus
       github_changelog_generator 
       DmitryFrishbuter/Tribulus
+  - git config --global user.email "travis@travis-ci.org"
+  - git config --global user.name "Travis CI"
+  - curl -u "DmitryFrishbuter:$GITHUB_OAUTH_TOKEN" https://github.com/DmitryFrishbuter/Tribulus.git
   - git checkout -b master
   - git add . CHANGELOG.md
-  - git commit -a -m "Travis build: $TRAVIS_BUILD_NUMBER"
-  - git push --quiet -u origin master https://"$GITHUB_OAUTH_TOKEN"@github.com/DmitryFrishbuter/Tribulus.git
+  - git commit -a -m "Travis build"
+  - git push --quiet -u origin master
   
 deploy:
     provider: releases
