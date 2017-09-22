@@ -34,6 +34,10 @@ after_success:
       -p Tribulus
       github_changelog_generator 
       DmitryFrishbuter/Tribulus
+  - git checkout -b master
+  - git add . CHANGELOG.md
+  - git commit -a -m "Travis build: $TRAVIS_BUILD_NUMBER"
+  - git push --quiet -u origin master
   
 deploy:
     provider: releases
