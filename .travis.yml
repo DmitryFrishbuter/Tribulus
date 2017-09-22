@@ -38,7 +38,7 @@ after_success:
   - curl -u "DmitryFrishbuter:$GITHUB_OAUTH_TOKEN" https://github.com/DmitryFrishbuter/Tribulus.git
   - git checkout -b master
   - git add . CHANGELOG.md
-  - git commit -a -m "Travis build: $TRAVIS_BUILD_NUMBER"
+  - git commit -a -m "Travis build"
   - git push -q -u origin master https://"$GITHUB_OAUTH_TOKEN"@github.com/DmitryFrishbuter/Tribulus.git
   
 deploy:
