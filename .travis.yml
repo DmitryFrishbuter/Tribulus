@@ -28,7 +28,7 @@ script:
 after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
   - >
-      github_changelog_generator --token "$CHANGELOG_GITHUB_TOKEN"
+      github_changelog_generator -t "$CHANGELOG_GITHUB_TOKEN"
       -u Dmitry Frishbuter 
       -p Tribulus
       github_changelog_generator 
@@ -36,7 +36,7 @@ after_success:
   - git checkout -b master
   - git add . CHANGELOG.md
   - git commit -a -m "Travis build: $TRAVIS_BUILD_NUMBER"
-  - git push --quiet -u origin master https://"$GITHUB_OAUTH_TOKEN"@github.com/DmitryFrishbuter/Tribulus.git
+  - git push -q -u origin master https://"$GITHUB_OAUTH_TOKEN"@github.com/DmitryFrishbuter/Tribulus.git
   
 deploy:
     provider: releases
