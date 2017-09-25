@@ -31,11 +31,10 @@ after_success:
   - git config --global user.email "travis@travis-ci.org"
   - git config --global user.name "Travis"
   - cat CHANGELOG.md
-  - ls
   - git add CHANGELOG.md
   - git commit -a -m "Travis build $TRAVIS_BUILD_NUMBER"
   - git remote set-url origin https://$GITHUB_OAUTH_TOKEN@github.com/DmitryFrishbuter/Tribulus.git
-  - git push origin master
+  - git push -u origin master
   
 deploy:
     provider: releases
