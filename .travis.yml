@@ -1,5 +1,9 @@
 language: objective-c
 osx_image: xcode8.3
+sudo: required
+
+services:
+  - docker
 
 env:
     global:
@@ -13,8 +17,11 @@ notifications:
     slack: travis-rosberry:MzKmgUnDtHBzXZOTWSuTcB7M
     email: false
     
+before_install:
+  docker run --rm --interactive --tty composer --version
+    
 before_script:
-  gem install github_changelog_generator
+  composer global require fojuth/readmegen:@stable -v
 
 script: 
   - set -o pipefail
