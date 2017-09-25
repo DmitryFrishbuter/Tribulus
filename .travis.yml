@@ -27,12 +27,7 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
-  - >
-      github_changelog_generator -t "$CHANGELOG_GITHUB_TOKEN"
-      -u Dmitry Frishbuter 
-      -p Tribulus
-      github_changelog_generator 
-      DmitryFrishbuter/Tribulus
+  - github_changelog_generator -t "$CHANGELOG_GITHUB_TOKEN"
   - git config --global user.email "travis@travis-ci.org"
   - git config --global user.name "Travis"
   - git add CHANGELOG.md
