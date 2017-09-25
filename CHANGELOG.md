@@ -4,14 +4,16 @@
 * Reset CHANGELOG.md ([c09676c](https://github.com/DmitryFrishbuter/Tribulus/commit/c09676c))
 * Travis build ([6759097](https://github.com/DmitryFrishbuter/Tribulus/commit/6759097))
 * Travis build 88 ([ebe826b](https://github.com/DmitryFrishbuter/Tribulus/commit/ebe826b))
-* Update .travis.yml ([d66005b](https://github.com/DmitryFrishbuter/Tribulus/commit/d66005b))
+* Travis build 99 [ci skip] ([bc673e9](https://github.com/DmitryFrishbuter/Tribulus/commit/bc673e9))
+* Update .travis.yml ([9e658aa](https://github.com/DmitryFrishbuter/Tribulus/commit/9e658aa))
+* Update .travis.yml ([ccd6467](https://github.com/DmitryFrishbuter/Tribulus/commit/ccd6467))
 * Update .travis.yml ([3b87078](https://github.com/DmitryFrishbuter/Tribulus/commit/3b87078))
 * Update .travis.yml ([5313ff4](https://github.com/DmitryFrishbuter/Tribulus/commit/5313ff4))
 * Update .travis.yml ([abe4644](https://github.com/DmitryFrishbuter/Tribulus/commit/abe4644))
 * Update .travis.yml ([363a6fa](https://github.com/DmitryFrishbuter/Tribulus/commit/363a6fa))
 * Update .travis.yml ([ccbf9d2](https://github.com/DmitryFrishbuter/Tribulus/commit/ccbf9d2))
 * Update .travis.yml ([ca5966e](https://github.com/DmitryFrishbuter/Tribulus/commit/ca5966e))
-* Update .travis.yml ([aa293aa](https://github.com/DmitryFrishbuter/Tribulus/commit/aa293aa))
+* Update .travis.yml ([cf6f5d7](https://github.com/DmitryFrishbuter/Tribulus/commit/cf6f5d7))
 * Update .travis.yml ([bbfc438](https://github.com/DmitryFrishbuter/Tribulus/commit/bbfc438))
 * Update .travis.yml ([ec1bc95](https://github.com/DmitryFrishbuter/Tribulus/commit/ec1bc95))
 * Update .travis.yml ([d26b161](https://github.com/DmitryFrishbuter/Tribulus/commit/d26b161))
@@ -20,11 +22,11 @@
 * Update .travis.yml ([2a2ed76](https://github.com/DmitryFrishbuter/Tribulus/commit/2a2ed76))
 * Update .travis.yml ([d4cf0bd](https://github.com/DmitryFrishbuter/Tribulus/commit/d4cf0bd))
 * Update .travis.yml ([867438f](https://github.com/DmitryFrishbuter/Tribulus/commit/867438f))
-* Update .travis.yml ([9e658aa](https://github.com/DmitryFrishbuter/Tribulus/commit/9e658aa))
-* Update .travis.yml ([12156d2](https://github.com/DmitryFrishbuter/Tribulus/commit/12156d2))
+* Update .travis.yml ([aa293aa](https://github.com/DmitryFrishbuter/Tribulus/commit/aa293aa))
+* Update .travis.yml ([d66005b](https://github.com/DmitryFrishbuter/Tribulus/commit/d66005b))
 * Update .travis.yml ([4c9bb18](https://github.com/DmitryFrishbuter/Tribulus/commit/4c9bb18))
+* Update .travis.yml ([12156d2](https://github.com/DmitryFrishbuter/Tribulus/commit/12156d2))
 * Update .travis.yml ([8aa04a7](https://github.com/DmitryFrishbuter/Tribulus/commit/8aa04a7))
-* Update .travis.yml ([ccd6467](https://github.com/DmitryFrishbuter/Tribulus/commit/ccd6467))
 * Update .travis.yml ([54748f5](https://github.com/DmitryFrishbuter/Tribulus/commit/54748f5))
 * Update .travis.yml ([4616e22](https://github.com/DmitryFrishbuter/Tribulus/commit/4616e22))
 * Update .travis.yml ([7af718f](https://github.com/DmitryFrishbuter/Tribulus/commit/7af718f))
@@ -71,16 +73,8 @@
 <a name="0.0.7"></a>
 ## 0.0.7 (2017-09-22)
 
-* Travis build: ([60f0386](https://github.com/DmitryFrishbuter/Tribulus/commit/60f0386))
 * Update .travis.yml ([4abc8f0](https://github.com/DmitryFrishbuter/Tribulus/commit/4abc8f0))
 * Update .travis.yml ([11000fe](https://github.com/DmitryFrishbuter/Tribulus/commit/11000fe))
-
-
-
-<a name="0.0.6"></a>
-## 0.0.6 (2017-09-22)
-
-* Update .travis.yml ([d48a1a7](https://github.com/DmitryFrishbuter/Tribulus/commit/d48a1a7))
 
 
 
