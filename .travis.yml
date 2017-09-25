@@ -1,9 +1,5 @@
 language: objective-c
 osx_image: xcode8.3
-sudo: required
-
-services:
-  - docker
 
 env:
     global:
@@ -16,9 +12,6 @@ env:
 notifications:
     slack: travis-rosberry:MzKmgUnDtHBzXZOTWSuTcB7M
     email: false
-    
-before_install:
-  docker run --rm --interactive --tty composer --version
     
 before_script:
   composer global require fojuth/readmegen:@stable -v
