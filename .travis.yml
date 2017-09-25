@@ -33,6 +33,7 @@ script:
       -enableCodeCoverage YES build test | xcpretty -c --test --color
 
 after_success:
+  - npm --version
   - bash <(curl -s https://codecov.io/bash) -cF ios
   - git checkout master
   - github_changelog_generator -t $CHANGELOG_GITHUB_TOKEN
