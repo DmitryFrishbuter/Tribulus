@@ -30,6 +30,7 @@ after_success:
   - github_changelog_generator -t $CHANGELOG_GITHUB_TOKEN
   - git config --global user.email "travis@travis-ci.org"
   - git config --global user.name "Travis"
+  - cat CHANGELOG.md
   - ls
   - git add CHANGELOG.md
   - git commit -a -m "Travis build $TRAVIS_BUILD_NUMBER"
