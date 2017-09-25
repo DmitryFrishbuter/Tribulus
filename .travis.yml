@@ -14,8 +14,8 @@ notifications:
     email: false
     
 before_script:
-  npm install -g conventional-changelog-cli
-  npm install -g conventional-commits-detector
+  npm install -g conventional-changelog-cli &>/dev/null
+  npm install -g conventional-commits-detector &>/dev/null
 
 script: 
   - set -o pipefail
