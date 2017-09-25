@@ -15,7 +15,6 @@ notifications:
     
 before_script:
   npm install -g conventional-changelog-cli &>/dev/null
-  npm install -g conventional-commits-detector &>/dev/null
 
 script: 
   - set -o pipefail
@@ -29,7 +28,6 @@ script:
 after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
   - git checkout master
-  - conventional-commits-detector 10
   - conventional-changelog -p angular -i CHANGELOG.md -s -r 0
   #- github_changelog_generator -t $CHANGELOG_GITHUB_TOKEN
   - cat CHANGELOG.md
