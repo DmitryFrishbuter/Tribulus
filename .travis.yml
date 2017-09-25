@@ -15,7 +15,6 @@ notifications:
     
 before_script:
   - npm install -g conventional-changelog-cli &>/dev/null
-  - chmod +x changelog.sh
 
 script: 
   - set -o pipefail
