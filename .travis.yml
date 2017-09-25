@@ -15,15 +15,21 @@ notifications:
     
 before_script:
   - npm install -g conventional-changelog-cli &>/dev/null
-  - chmod +x build.sh
   - chmod +x changelog.sh
 
 script: 
-  - build.sh
+  - set -o pipefail
+  - > 
+      xcodebuild
+      -project "$PROJECT"
+      -scheme "$IOS_FRAMEWORK_SCHEME"
+      -destination "$DESTINATION"
+      -enableCodeCoverage YES 
+      build test | xcpretty -c --test --color
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
-  - changelog.sh
+  - sh changelog.sh
   
 deploy:
     provider: releases
