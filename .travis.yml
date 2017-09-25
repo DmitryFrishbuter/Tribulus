@@ -37,7 +37,7 @@ after_success:
   - git commit -a -m "Travis build $TRAVIS_BUILD_NUMBER [ci skip]"
   - git remote set-url origin https://$GITHUB_OAUTH_TOKEN@github.com/DmitryFrishbuter/Tribulus.git
   - git branch
-  - git push -u origin master
+  - git push -u origin master --follow-tags
   
 deploy:
     provider: releases
