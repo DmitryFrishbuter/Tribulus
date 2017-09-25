@@ -13,8 +13,11 @@ notifications:
     slack: travis-rosberry:MzKmgUnDtHBzXZOTWSuTcB7M
     email: false
     
+before_install:
+  - brew install node
+    
 before_script:
-  composer global require fojuth/readmegen:@stable -v
+  npm install -g github-changes
 
 script: 
   - set -o pipefail
@@ -29,7 +32,9 @@ after_success:
   - npm --version
   - bash <(curl -s https://codecov.io/bash) -cF ios
   - git checkout master
-  - github_changelog_generator -t $CHANGELOG_GITHUB_TOKEN
+  - github-changes -o lalitkapoor -r github-changes -a --only-pulls --use-commit-body
+  #- github_changelog_generator -t $CHANGELOG_GITHUB_TOKEN
+  - cat CHANGELOG.md
   - git config --global user.email "travis@travis-ci.org"
   - git config --global user.name "Travis"
   - git add CHANGELOG.md
