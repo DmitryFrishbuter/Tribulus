@@ -27,6 +27,7 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
+  - git checkout origin/master
   - github_changelog_generator -t $CHANGELOG_GITHUB_TOKEN
   - git config --global user.email "travis@travis-ci.org"
   - git config --global user.name "Travis"
