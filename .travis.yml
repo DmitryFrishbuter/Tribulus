@@ -13,9 +13,6 @@ notifications:
     slack: travis-rosberry:MzKmgUnDtHBzXZOTWSuTcB7M
     email: false
     
-before_install:
-  - brew install node
-    
 before_script:
   npm install -g github-changes
 
@@ -29,10 +26,9 @@ script:
       -enableCodeCoverage YES build test | xcpretty -c --test --color
 
 after_success:
-  - npm --version
   - bash <(curl -s https://codecov.io/bash) -cF ios
   - git checkout master
-  - github-changes -o lalitkapoor -r github-changes -a --only-pulls --use-commit-body
+  - github-changes -o Dmitry Frishbuter -r Tribulus -a
   #- github_changelog_generator -t $CHANGELOG_GITHUB_TOKEN
   - cat CHANGELOG.md
   - git config --global user.email "travis@travis-ci.org"
