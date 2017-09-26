@@ -28,7 +28,7 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -cF ios
-  - changelog.sh
+  - sh changelog.sh
   
 deploy:
     provider: releases
