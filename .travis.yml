@@ -17,6 +17,11 @@ notifications:
 before_script:
   - npm install -g conventional-changelog-cli &>/dev/null
 
+
+before_deploy:
+  - brew install jshon
+  - export BODY=$(jshon -s "$(cat CHANGELOG.md)")
+
 script: 
   - set -o pipefail
   - > 
@@ -32,4 +37,10 @@ after_success:
   - sh changelog.sh
   
 deploy:
-  - github_releases.rb
+  provider: releases
+  api_key: $GITHUB_OAUTH_TOKEN
+  skip_cleanup: true
+  body: ${BODY}
+  on:
+    tags: true
+
