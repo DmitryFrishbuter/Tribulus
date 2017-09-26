@@ -33,7 +33,7 @@ after_success:
 
 before_deploy:
   - brew install jshon
-  - export BODY=$(jshon -s "$(cat CHANGELOG.md)"))
+  - export BODY=$(jshon -s "$(cat CHANGELOG.md)")
   
 deploy:
     provider: releases
