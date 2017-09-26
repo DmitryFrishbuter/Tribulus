@@ -41,6 +41,7 @@ deploy:
   api_key: $GITHUB_OAUTH_TOKEN
   skip_cleanup: true
   body: ${BODY}
+  edge: true
   on:
     tags: true
 
