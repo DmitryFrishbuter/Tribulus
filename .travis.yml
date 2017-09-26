@@ -32,9 +32,4 @@ after_success:
   - sh changelog.sh
   
 deploy:
-    provider: releases
-    api_key: $GITHUB_OAUTH_TOKEN
-    skip_cleanup: true
-    body: "custom release message"
-    on:
-      tags: true
+  - github_releases.rb
