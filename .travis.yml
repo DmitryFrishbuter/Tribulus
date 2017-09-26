@@ -34,5 +34,7 @@ deploy:
     provider: releases
     api_key: $GITHUB_OAUTH_TOKEN
     skip_cleanup: true
+    name: "devbuild-$TRAVIS_BRANCH-$TRAVIS_COMMIT"
+    body: "$TRAVIS_COMMIT_MESSAGE\n\n[skip ci]"
     on:
       tags: true
