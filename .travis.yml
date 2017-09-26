@@ -10,7 +10,7 @@ env:
     - DESTINATION="platform=iOS Simulator,OS=10.3.1,name=iPhone 7"     SCHEME="$IOS_FRAMEWORK_SCHEME"
     
 notifications:
-    slack: travis-rosberry:MzKmgUnDtHBzXZOTWSuTcB7M
+    slack: travis-rosberry:$SLACK_NOTIFY_TOKEN
     email: false
     
 before_script:
