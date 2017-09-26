@@ -35,7 +35,6 @@ deploy:
     provider: releases
     api_key: $GITHUB_OAUTH_TOKEN
     skip_cleanup: true
-    name: "custom-release"
     body: "custom release message"
     on:
       tags: true
