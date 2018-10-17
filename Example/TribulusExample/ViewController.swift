@@ -3,7 +3,7 @@
 //  TribulusExample
 //
 //  Created by Dmitry Frishbuter on 31/08/2017.
-//  Copyright © 2017 Rosberry. All rights reserved.
+//  Copyright © 2017 Dmitry Frishbuter. All rights reserved.
 //
 
 import UIKit

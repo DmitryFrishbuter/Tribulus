@@ -2,7 +2,7 @@
 //  TribulusTests.swift
 //  TribulusTests
 //
-//  Copyright © 2017 Rosberry. All rights reserved.
+//  Copyright © 2017 Dmitry Frishbuter. All rights reserved.
 //
 
 import XCTest

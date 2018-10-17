@@ -1,8 +1,5 @@
 //
-//  NSParagraphStyle+Compare.swift
-//  Tribulus
-//
-//  Copyright © 2017 Rosberry. All rights reserved.
+//  Copyright © 2017 Dmitry Frishbuter. All rights reserved.
 //
 
 import UIKit.NSParagraphStyle
