@@ -6,7 +6,7 @@ import UIKit.NSText
 
 public typealias RawAttributes = [NSAttributedString.Key: Any]
 
-public class Attributes {
+public class TextStyle {
     
     /// Attribute for specifying a text effect, such as `letterpress` (aka `NSAttributedString.TextEffectStyle`)
     public enum TextEffect: String {
@@ -68,8 +68,8 @@ public class Attributes {
     public var underlineColor: UIColor?
     
     /// The value of this attribute is an URL object. The default value of this property is `nil`, indicating no link.
-    public var URL: URL?
-    
+    public var url: URL?
+
     
     // Paragraph properties
     
@@ -145,7 +145,7 @@ public class Attributes {
 
 
 // MARK: Convenience methods
-extension Attributes {
+extension TextStyle {
     
     /// The receiver’s point size, or the effective vertical point size for a font with a nonstandard matrix.
     public var fontSize: CGFloat? {
@@ -154,7 +154,7 @@ extension Attributes {
                 self.font = currentFont.withSize(newValue)
             }
             else {
-                self.font = currentFont.withSize(Attributes.defaultFontSize)
+                self.font = currentFont.withSize(TextStyle.defaultFontSize)
             }
         }
         get {
@@ -192,6 +192,6 @@ extension Attributes {
     private static let defaultFontSize: CGFloat = 12
     private static let defaultFont = UIFont.systemFont(ofSize: defaultFontSize)
     private var currentFont: UIFont {
-        return self.font ?? Attributes.defaultFont
+        return self.font ?? TextStyle.defaultFont
     }
 }

@@ -7,8 +7,6 @@
 
 import UIKit.NSAttributedString
 
-public typealias AttributeResolver = (Attributes) -> Void
-
 extension NSAttributedString {
     
     var existingAttributes: RawAttributes? {
@@ -26,11 +24,9 @@ extension NSAttributedString {
     ///
     /// - Parameters:
     ///   - string: The string for the new attributed string.
-    ///   - resolver: Closure, that allows to configure attributes for the new attributed string.
-    public convenience init(string: String, resolver: AttributeResolver) {
-        let attributes = Attributes()
-        resolver(attributes)
-        self.init(string: string, attributes: attributes.rawAttributes)
+    ///   - attributes: Attributes for the new attributed string.
+    public convenience init(string: String, style: TextStyle) {
+        self.init(string: string, attributes: style.rawAttributes)
     }
 }
 
@@ -41,12 +37,10 @@ public extension NSMutableAttributedString {
     ///
     /// - Parameters:
     ///   - string: The string whose characters and attributes are added.
-    ///   - resolver: Closure, that allows to configure attributes for appended string.
+    ///   - attributes: Attributes for appended string.
     @discardableResult
-    public func append(string: String, resolver: AttributeResolver) -> NSMutableAttributedString {
-        let attributes = Attributes()
-        resolver(attributes)
-        let attributedString = NSAttributedString(string: string, attributes: attributes.rawAttributes)
+    public func append(string: String, with style: TextStyle) -> NSMutableAttributedString {
+        let attributedString = NSAttributedString(string: string, attributes: style.rawAttributes)
         append(attributedString)
         return self
     }
@@ -55,12 +49,10 @@ public extension NSMutableAttributedString {
     ///
     /// - Parameters:
     ///   - string: The string whose characters are inserted.
-    ///   - resolver: Closure, that allows to configure attributes for inserted string.
+    ///   - attributes: Attributes for inserted string.
     @discardableResult
-    public func insert(string: String, at location: Int, resolver: AttributeResolver) -> NSMutableAttributedString {
-        let attributes = Attributes()
-        resolver(attributes)
-        let attributedString = NSAttributedString(string: string, attributes: attributes.rawAttributes)
+    public func insert(string: String, with style: TextStyle, at location: Int) -> NSMutableAttributedString {
+        let attributedString = NSAttributedString(string: string, attributes: style.rawAttributes)
         insert(attributedString, at: location)
         return self
     }
@@ -100,10 +92,8 @@ public extension NSMutableAttributedString {
     ///   - range: The range of characters to which the specified attributes apply.
     ///   - resolver: Closure, that allows to configure attributes for specified range of characters.
     @discardableResult
-    public func resolveAttributes(in range: NSRange, resolver: AttributeResolver) -> NSMutableAttributedString {
-        let attributes = Attributes()
-        resolver(attributes)
-        addAttributes(attributes.rawAttributes, range: range)
+    public func applyStyle(_ style: TextStyle, in range: NSRange) -> NSMutableAttributedString {
+        setAttributes(style.rawAttributes, range: range)
         return self
     }
 }

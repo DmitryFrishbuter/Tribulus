@@ -10,7 +10,7 @@ import XCTest
 
 class TribulusTests: XCTestCase {
     
-    var defaultAttributes: Attributes {
+    var defaultAttributes: TextStyle {
         
         var rawAttributes: RawAttributes = [:]
         rawAttributes[.backgroundColor] = UIColor.red
@@ -48,7 +48,7 @@ class TribulusTests: XCTestCase {
         
         rawAttributes[.paragraphStyle] = paragraphStyle
         
-        let attributes = Attributes(rawAttributes: rawAttributes)
+        let attributes = TextStyle(rawAttributes: rawAttributes)
         return attributes
     }
     
@@ -82,7 +82,7 @@ class TribulusTests: XCTestCase {
         expectedAttributes[.textEffect] = defaultAttributes.textEffect!.rawValue
         expectedAttributes[.underlineStyle] = defaultAttributes.underlineStyle!.rawValue
         expectedAttributes[.underlineColor] = defaultAttributes.underlineColor
-        expectedAttributes[.link] = defaultAttributes.URL
+        expectedAttributes[.link] = defaultAttributes.url
         
         let testParagraphStyle = NSMutableParagraphStyle()
         testParagraphStyle.lineSpacing = CGFloat(defaultAttributes.lineSpacing!)
@@ -100,40 +100,39 @@ class TribulusTests: XCTestCase {
         testParagraphStyle.allowsDefaultTighteningForTruncation = defaultAttributes.allowsTighteningForTruncation!
         
         expectedAttributes[.paragraphStyle] = testParagraphStyle
-        
-        let attributedString = NSAttributedString(string: testString) {
-            $0.backgroundColor = defaultAttributes.backgroundColor
-            $0.baselineOffset = defaultAttributes.baselineOffset
-            $0.color = defaultAttributes.color
-            $0.direction = defaultAttributes.direction
-            $0.expansion = defaultAttributes.expansion
-            $0.font = defaultAttributes.font
-            $0.kern = defaultAttributes.kern
-            $0.ligature = defaultAttributes.ligature
-            $0.strikethroughStyle = defaultAttributes.strikethroughStyle
-            $0.strikethroughColor = defaultAttributes.strikethroughColor
-            $0.strokeWidth = defaultAttributes.strokeWidth
-            $0.strokeColor = defaultAttributes.strokeColor
-            $0.obliqueness = defaultAttributes.obliqueness
-            $0.textEffect = defaultAttributes.textEffect
-            $0.underlineStyle = defaultAttributes.underlineStyle
-            $0.underlineColor = defaultAttributes.underlineColor
-            $0.URL = defaultAttributes.URL
-            
-            $0.lineSpacing = defaultAttributes.lineSpacing
-            $0.alignment = defaultAttributes.alignment
-            $0.lineBreakMode = defaultAttributes.lineBreakMode
-            $0.lineHeightMultiplier = defaultAttributes.lineHeightMultiplier
-            $0.paragraphSpacingAfter = defaultAttributes.paragraphSpacingAfter
-            $0.paragraphSpacingBefore = defaultAttributes.paragraphSpacingBefore
-            $0.headIndent = defaultAttributes.headIndent
-            $0.tailIndent = defaultAttributes.tailIndent
-            $0.firstLineHeadIndent = defaultAttributes.firstLineHeadIndent
-            $0.minimumLineHeight = defaultAttributes.minimumLineHeight
-            $0.maximumLineHeight = defaultAttributes.maximumLineHeight
-            $0.hyphenationFactor = defaultAttributes.hyphenationFactor
-            $0.allowsTighteningForTruncation = defaultAttributes.allowsTighteningForTruncation
-        }
+
+        let style = TextStyle
+            .backgroundColor(defaultAttributes.backgroundColor!)
+            .baselineOffset(defaultAttributes.baselineOffset!)
+            .color(defaultAttributes.color!)
+            .direction(defaultAttributes.direction!)
+            .expansion(defaultAttributes.expansion!)
+            .font(defaultAttributes.font!)
+            .kern(defaultAttributes.kern!)
+            .ligature(defaultAttributes.ligature!)
+            .strikethroughStyle(defaultAttributes.strikethroughStyle!)
+            .strikethroughColor(defaultAttributes.strikethroughColor!)
+            .strokeWidth(defaultAttributes.strokeWidth!)
+            .strokeColor(defaultAttributes.strokeColor!)
+            .obliqueness(defaultAttributes.obliqueness!)
+            .textEffect(defaultAttributes.textEffect!)
+            .underlineStyle(defaultAttributes.underlineStyle!)
+            .underlineColor(defaultAttributes.underlineColor!)
+            .url(defaultAttributes.url!)
+            .lineSpacing(defaultAttributes.lineSpacing)
+            .alignment(defaultAttributes.alignment!)
+            .lineBreakMode(defaultAttributes.lineBreakMode!)
+            .lineHeightMultiplier(defaultAttributes.lineHeightMultiplier!)
+            .paragraphSpacingAfter(defaultAttributes.paragraphSpacingAfter!)
+            .paragraphSpacingBefore(defaultAttributes.paragraphSpacingBefore!)
+            .headIndent(defaultAttributes.headIndent!)
+            .tailIndent(defaultAttributes.tailIndent!)
+            .firstLineHeadIndent(defaultAttributes.firstLineHeadIndent!)
+            .minimumLineHeight(defaultAttributes.minimumLineHeight!)
+            .maximumLineHeight(defaultAttributes.maximumLineHeight!)
+            .hyphenationFactor(defaultAttributes.hyphenationFactor!)
+            .allowsTighteningForTruncation(defaultAttributes.allowsTighteningForTruncation!)
+        let attributedString = NSAttributedString(string: testString, style: style)
         XCTAssertEqual(testString, attributedString.string)
         
         if let existingAttributes = attributedString.existingAttributes {
@@ -165,12 +164,9 @@ class TribulusTests: XCTestCase {
         let testString = "Foo"
         let stringToAppend = " Bar"
         let expectedString = "Foo Bar"
-        let attributedString = NSMutableAttributedString(string: testString) {
-                $0.color = .red
-            }
-            .append(string: stringToAppend) {
-                $0.color = .green
-            }
+        let attributedString = NSMutableAttributedString(string: testString, style: .color(.red))
+            .append(string: stringToAppend, with: .color(.green))
+
         XCTAssertEqual(attributedString.string, expectedString)
         let firstColor = attributedString.attribute(.foregroundColor, at: 0, effectiveRange: nil) as? UIColor
         let secondColor = attributedString.attribute(.foregroundColor, at: 3, effectiveRange: nil) as? UIColor
@@ -180,14 +176,10 @@ class TribulusTests: XCTestCase {
     
     func testThatCorrectlyInsertsString() {
         let testString = "Foo  Baz"
-        let stringToAppend = "Bar"
+        let stringToInsert = "Bar"
         let expectedString = "Foo Bar Baz"
-        let attributedString = NSMutableAttributedString(string: testString) {
-                $0.color = .red
-            }
-            .insert(string: stringToAppend, at: 4) {
-                $0.color = .green
-            }
+        let attributedString = NSMutableAttributedString(string: testString, style: .color(.red))
+            .insert(string: stringToInsert, with: .color(.green), at: 4)
         XCTAssertEqual(attributedString.string, expectedString)
         let firstColor = attributedString.attribute(.foregroundColor, at: 0, effectiveRange: nil) as? UIColor
         let secondColor = attributedString.attribute(.foregroundColor, at: 4, effectiveRange: nil) as? UIColor
@@ -229,7 +221,7 @@ class TribulusTests: XCTestCase {
                                           NSRange(location: 1, length: 1): .green,
                                           NSRange(location: 2, length: 1): .blue]
         colors.forEach { (range, color) in
-            attributedString.resolveAttributes(in: range) { $0.color = color }
+            attributedString.applyStyle(.color(color), in: range)
         }
         attributedString.enumerateAttribute(.foregroundColor, in: attributedString.fullRange, options: []) { (value, range, stop) in
             XCTAssertEqual(value as? UIColor, colors[range])
@@ -238,16 +230,14 @@ class TribulusTests: XCTestCase {
     
     func testThatEmptyStringHasNoAttributes() {
         let attributedString = NSMutableAttributedString(string: "")
-        attributedString.resolveAttributes(in: attributedString.fullRange) {
-            $0.alignment = .center
-        }
+        attributedString.applyStyle(.alignment(.center), in: attributedString.fullRange)
         XCTAssertNil(attributedString.existingAttributes)
     }
     
     // MARK: - UIFontDescriptorSymbolicTraits Convenience
     
     func testThatCorrectlySetsFontSize() {
-        let attributes = Attributes()
+        let attributes = TextStyle()
         attributes.fontSize = 16
         XCTAssertEqual(attributes.fontSize, 16)
         attributes.fontSize = nil
@@ -255,7 +245,7 @@ class TribulusTests: XCTestCase {
     }
     
     func testThatCorrectlySetsBold() {
-        let attributes = Attributes()
+        let attributes = TextStyle()
         attributes.bold = true
         XCTAssertTrue(attributes.bold)
         attributes.bold = false
@@ -263,7 +253,7 @@ class TribulusTests: XCTestCase {
     }
     
     func testThatCorrectlySetsItalic() {
-        let attributes = Attributes()
+        let attributes = TextStyle()
         attributes.italic = true
         XCTAssertTrue(attributes.italic)
         attributes.italic = false

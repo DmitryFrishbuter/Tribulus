@@ -4,7 +4,7 @@
 
 import UIKit.NSText
 
-extension Attributes {
+extension TextStyle {
     
     private var paragraphAttributes: [Any?] {
         return [lineSpacing,

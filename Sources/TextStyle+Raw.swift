@@ -4,7 +4,7 @@
 
 import UIKit.NSText
 
-extension Attributes {
+extension TextStyle {
     
     var rawAttributes: RawAttributes {
         var result: RawAttributes = [:]
@@ -29,7 +29,7 @@ extension Attributes {
         result[.textEffect] = NSAttributedString.TextEffectStyle.letterpressStyle.rawValue
         result[.underlineStyle] = underlineStyle?.rawValue
         result[.underlineColor] = underlineColor
-        result[.link] = URL
+        result[.link] = url
         
         return result
     }
@@ -38,20 +38,14 @@ extension Attributes {
         self.init()
         
         backgroundColor = attributes[.backgroundColor] as? UIColor
-        if let baselineOffset = attributes[.baselineOffset] as? NSNumber {
-            self.baselineOffset = baselineOffset.doubleValue
-        }
+        baselineOffset = attributes[.baselineOffset] as? Double
         color = attributes[.foregroundColor] as? UIColor
         if let direction = attributes[.verticalGlyphForm] as? Int {
             self.direction = GlyphDirection(rawValue: direction)
         }
-        if let expansion = attributes[.expansion] as? NSNumber {
-            self.expansion = expansion.doubleValue
-        }
+        expansion = attributes[.expansion] as? Double
         font = attributes[.font] as? UIFont
-        if let kern = attributes[.kern] as? NSNumber {
-            self.kern = kern.doubleValue
-        }
+        kern = attributes[.kern] as? Double
         if let ligature = attributes[.ligature] as? Int {
             self.ligature = (ligature == 1)
         }
@@ -69,7 +63,7 @@ extension Attributes {
             self.underlineStyle = NSUnderlineStyle(rawValue: underlineStyle)
         }
         underlineColor = attributes[.underlineColor] as? UIColor
-        URL = attributes[.link] as? URL
+        url = attributes[.link] as? URL
         
         if let paragraph = attributes[.paragraphStyle] as? NSParagraphStyle {
             alignment = paragraph.mapAttribute { $0.alignment }
