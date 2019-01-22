@@ -3,10 +3,9 @@
 </p>
 
 [![Build Status](https://travis-ci.org/rosberry/Tribulus.svg?branch=master)](https://travis-ci.org/rosberry/Tribulus)
-[![Version](https://img.shields.io/cocoapods/v/Tribulus.svg?style=flat)](http://cocoadocs.org/docsets/Tribulus)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/Tribulus.svg?style=flat)](http://cocoadocs.org/docsets/Tribulus)
-![Swift 3.0.x](https://img.shields.io/badge/Swift-3.0.x-orange.svg)
+![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg)
 [![codecov](https://codecov.io/gh/DmitryFrishbuter/Tribulus/branch/master/graph/badge.svg)](https://codecov.io/gh/DmitryFrishbuter/Tribulus)
 [![License](https://img.shields.io/cocoapods/l/Tribulus.svg?style=flat)](http://cocoadocs.org/docsets/Tribulus)
 
@@ -32,26 +31,6 @@ github "rosberry/Tribulus"
 ```
 
 Run `carthage update` to build the framework and drag the built `Tribulus.framework` into your Xcode project.
-
-### CocoaPods
-
-[CocoaPods](http://cocoapods.org) is a dependency manager for Swift and Objective-C Cocoa projects. It has over eighteen thousand libraries and can help you scale your projects elegantly. You can install it with the following command:
-
-```bash
-$ sudo gem install cocoapods
-```
-
-To integrate Tribulus via CocoaPods, just add the following line to your `Podfile`:
-
-```ruby
-pod "Tribulus"
-```
-
-Then, run the following command:
-
-```bash
-$ pod install
-```
 
 ### Manually
 
