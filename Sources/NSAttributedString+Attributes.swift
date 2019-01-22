@@ -1,8 +1,5 @@
 //
-//  NSAttributedString+Attributes.swift
-//  Tribulus
-//
-//  Copyright © 2017 Rosberry. All rights reserved.
+//  Copyright © 2017 Dmitry Frishbuter. All rights reserved.
 //
 
 import UIKit.NSAttributedString
@@ -33,7 +30,7 @@ extension NSAttributedString {
 
 public extension NSMutableAttributedString {
     
-    /// Adds the characters and attributes, configured by means of resolver, to the end of the receiver.
+    /// Adds the characters and attributes, configured by means of style, to the end of the receiver.
     ///
     /// - Parameters:
     ///   - string: The string whose characters and attributes are added.
@@ -45,7 +42,7 @@ public extension NSMutableAttributedString {
         return self
     }
     
-    /// Inserts the characters of the given string configured with `AttributeResolver` into the receiver at the given index.
+    /// Inserts the characters of the given string configured with `TextStyle` into the receiver at the given index.
     ///
     /// - Parameters:
     ///   - string: The string whose characters are inserted.
@@ -86,7 +83,7 @@ public extension NSMutableAttributedString {
         return self
     }
     
-    /// Adds the attributes configured with `AttributeResolver` to the characters in the specified range.
+    /// Adds the attributes configured with `TextStyle` to the characters in the specified range.
     ///
     /// - Parameters:
     ///   - range: The range of characters to which the specified attributes apply.
