@@ -8,28 +8,28 @@ extension Attributes {
     
     var rawAttributes: RawAttributes {
         var result: RawAttributes = [:]
-        result[NSBackgroundColorAttributeName] = backgroundColor
-        result[NSBaselineOffsetAttributeName] = baselineOffset
-        result[NSForegroundColorAttributeName] = color
-        result[NSVerticalGlyphFormAttributeName] = direction?.rawValue
-        result[NSExpansionAttributeName] = expansion
-        result[NSFontAttributeName] = font
-        result[NSKernAttributeName] = kern
+        result[.backgroundColor] = backgroundColor
+        result[.baselineOffset] = baselineOffset
+        result[.foregroundColor] = color
+        result[.verticalGlyphForm] = direction?.rawValue
+        result[.expansion] = expansion
+        result[.font] = font
+        result[.kern] = kern
         if let ligature = ligature {
-            result[NSLigatureAttributeName] = ligature ? 1 : 0
+            result[.ligature] = ligature ? 1 : 0
         }
         if let paragraphStyle = paragraphStyle {
-            result[NSParagraphStyleAttributeName] = paragraphStyle
+            result[.paragraphStyle] = paragraphStyle
         }
-        result[NSStrikethroughStyleAttributeName] = strikethroughStyle?.rawValue
-        result[NSStrikethroughColorAttributeName] = strikethroughColor
-        result[NSStrokeWidthAttributeName] = strokeWidth
-        result[NSStrokeColorAttributeName] = strokeColor
-        result[NSObliquenessAttributeName] = obliqueness
-        result[NSTextEffectAttributeName] = textEffect?.rawValue
-        result[NSUnderlineStyleAttributeName] = underlineStyle?.rawValue
-        result[NSUnderlineColorAttributeName] = underlineColor
-        result[NSLinkAttributeName] = URL
+        result[.strikethroughStyle] = strikethroughStyle?.rawValue
+        result[.strikethroughColor] = strikethroughColor
+        result[.strokeWidth] = strokeWidth
+        result[.strokeColor] = strokeColor
+        result[.obliqueness] = obliqueness
+        result[.textEffect] = NSAttributedString.TextEffectStyle.letterpressStyle.rawValue
+        result[.underlineStyle] = underlineStyle?.rawValue
+        result[.underlineColor] = underlineColor
+        result[.link] = URL
         
         return result
     }
@@ -37,35 +37,41 @@ extension Attributes {
     convenience init(rawAttributes attributes: RawAttributes) {
         self.init()
         
-        backgroundColor = attributes[NSBackgroundColorAttributeName] as? UIColor
-        baselineOffset = attributes[NSBaselineOffsetAttributeName] as? Float
-        color = attributes[NSForegroundColorAttributeName] as? UIColor
-        if let direction = attributes[NSVerticalGlyphFormAttributeName] as? Int {
+        backgroundColor = attributes[.backgroundColor] as? UIColor
+        if let baselineOffset = attributes[.baselineOffset] as? NSNumber {
+            self.baselineOffset = baselineOffset.doubleValue
+        }
+        color = attributes[.foregroundColor] as? UIColor
+        if let direction = attributes[.verticalGlyphForm] as? Int {
             self.direction = GlyphDirection(rawValue: direction)
         }
-        expansion = attributes[NSExpansionAttributeName] as? Float
-        font = attributes[NSFontAttributeName] as? UIFont
-        kern = attributes[NSKernAttributeName] as? Float
-        if let ligature = attributes[NSLigatureAttributeName] as? Int {
+        if let expansion = attributes[.expansion] as? NSNumber {
+            self.expansion = expansion.doubleValue
+        }
+        font = attributes[.font] as? UIFont
+        if let kern = attributes[.kern] as? NSNumber {
+            self.kern = kern.doubleValue
+        }
+        if let ligature = attributes[.ligature] as? Int {
             self.ligature = (ligature == 1)
         }
-        obliqueness = attributes[NSObliquenessAttributeName] as? Float
-        if let strikethroughStyle = attributes[NSStrikethroughStyleAttributeName] as? Int {
+        obliqueness = attributes[.obliqueness] as? Double
+        if let strikethroughStyle = attributes[.strikethroughStyle] as? Int {
             self.strikethroughStyle = NSUnderlineStyle(rawValue: strikethroughStyle)
         }
-        strikethroughColor = attributes[NSStrikethroughColorAttributeName] as? UIColor
-        strokeWidth = attributes[NSStrokeWidthAttributeName] as? Float
-        strokeColor = attributes[NSStrokeColorAttributeName] as? UIColor
-        if let textEffect = attributes[NSTextEffectAttributeName] as? String {
-            self.textEffect = TextEffect(rawValue: textEffect)
+        strikethroughColor = attributes[.strikethroughColor] as? UIColor
+        strokeWidth = attributes[.strokeWidth] as? Double
+        strokeColor = attributes[.strokeColor] as? UIColor
+        if let rawTextEffect = attributes[.textEffect] as? NSAttributedString.TextEffectStyle.RawValue {
+            textEffect = NSAttributedString.TextEffectStyle(rawValue: rawTextEffect)
         }
-        if let underlineStyle = attributes[NSUnderlineStyleAttributeName] as? Int {
+        if let underlineStyle = attributes[.underlineStyle] as? Int {
             self.underlineStyle = NSUnderlineStyle(rawValue: underlineStyle)
         }
-        underlineColor = attributes[NSUnderlineColorAttributeName] as? UIColor
-        URL = attributes[NSLinkAttributeName] as? URL
+        underlineColor = attributes[.underlineColor] as? UIColor
+        URL = attributes[.link] as? URL
         
-        if let paragraph = attributes[NSParagraphStyleAttributeName] as? NSParagraphStyle {
+        if let paragraph = attributes[.paragraphStyle] as? NSParagraphStyle {
             alignment = paragraph.mapAttribute { $0.alignment }
             lineSpacing = paragraph.mapAttribute { Float($0.lineSpacing) }
             lineHeightMultiplier = paragraph.mapAttribute { Float($0.lineHeightMultiple) }

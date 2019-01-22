@@ -4,11 +4,11 @@
 
 import UIKit.NSText
 
-public typealias RawAttributes = [String: Any]
+public typealias RawAttributes = [NSAttributedString.Key: Any]
 
 public class Attributes {
     
-    /// Attribute for specifying a text effect, such as `letterpress` (aka `NSTextEffectLetterpressStyle`)
+    /// Attribute for specifying a text effect, such as `letterpress` (aka `NSAttributedString.TextEffectStyle`)
     public enum TextEffect: String {
         case letterpress
     }
@@ -23,7 +23,7 @@ public class Attributes {
     public var backgroundColor: UIColor?
     
     /// The value of this attribute is a floating point value indicating the character’s offset from the baseline, in points. The default value is `0`.
-    public var baselineOffset: Float?
+    public var baselineOffset: Double?
     
     /// The value of this attribute is a `UIColor` object. Use this attribute to specify the color of the text during rendering. If you do not specify this attribute, the text is rendered in black.
     public var color: UIColor?
@@ -32,19 +32,19 @@ public class Attributes {
     public var direction: GlyphDirection?
     
     /// The value of this attribute is a floating point value indicating the log of the expansion factor to be applied to glyphs. The default value is `0`, indicating no expansion.
-    public var expansion: Float?
+    public var expansion: Double?
     
     /// The value of this attribute is a `UIFont` object. Use this attribute to change the font for a range of text. If you do not specify this attribute, the string uses a 12-point System font by default.
     public var font: UIFont?
     
     /// The value of this attribute is a floating-point value. This value specifies the number of points by which to adjust kern-pair characters. Kerning prevents unwanted space from occurring between specific characters and depends on the font. The value `nil` or `0` means kerning is disabled. The default value for this attribute is `nil`.
-    public var kern: Float?
+    public var kern: Double?
     
     /// The value of this attribute is a `Bool`. Ligatures cause specific character combinations to be rendered using a single custom glyph that corresponds to those characters. The value `false` indicates no ligatures. The value `true` indicates the use of the default ligatures.
     public var ligature: Bool?
     
     /// The value of this attribute is a floating point value indicating skew to be applied to glyphs. The default value is `0`, indicating no skew.
-    public var obliqueness: Float?
+    public var obliqueness: Double?
     
     /// The value of this attribute is `NSUnderlineStyle` enum case. This value indicates whether the text has a line through it and corresponds to one of the constants described in `NSUnderlineStyle`. The default value for this attribute is `nil` indicating no strikethrough.
     public var strikethroughStyle: NSUnderlineStyle?
@@ -53,13 +53,13 @@ public class Attributes {
     public var strikethroughColor: UIColor?
     
     /// The value of this attribute is a floating-point value. This value represents the amount to change the stroke width and is specified as a percentage of the font point size. Specify `0` (the default) for no additional changes. Specify positive values to change the stroke width alone. Specify negative values to stroke and fill the text. For example, a typical value for outlined text would be `3.0`.
-    public var strokeWidth: Float?
+    public var strokeWidth: Double?
     
     /// The value of this parameter is a `UIColor` object. If it is not defined (which is the case by default), it is assumed to be the same as the value of `color` attribute; otherwise, it describes the outline color. For more details, see Drawing attributed strings that are both filled and stroked.
     public var strokeColor: UIColor?
     
-    /// The value of this attribute is an `TextEffect` enum case. Use this attribute to specify a text effect, such as `letterpress` (aka `NSTextEffectLetterpressStyle`). The default value of this property is `nil`, indicating no text effect.
-    public var textEffect: TextEffect?
+    /// The value of this attribute is an `TextEffect` enum case. Use this attribute to specify a text effect, such as `letterpress` (aka `NSAttributedString.TextEffectStyle.letterpressStyle`). The default value of this property is `nil`, indicating no text effect.
+    public var textEffect: NSAttributedString.TextEffectStyle?
     
     /// TThe value of this attribute is `NSUnderlineStyle` enum case. This value indicates whether the text is underlined and corresponds to one of the constants described in `NSUnderlineStyle`. The default value for this attribute is `nil` indicating no underline.
     public var underlineStyle: NSUnderlineStyle?
@@ -174,7 +174,7 @@ extension Attributes {
         get { return currentFont.fontDescriptor.symbolicTraits.contains(.traitItalic) }
     }
     
-    private func setSymbolicTraits(_ traits: UIFontDescriptorSymbolicTraits, enabled: Bool) {
+    private func setSymbolicTraits(_ traits: UIFontDescriptor.SymbolicTraits, enabled: Bool) {
         let font = currentFont
         let descriptor = font.fontDescriptor
         var currentTraits = descriptor.symbolicTraits

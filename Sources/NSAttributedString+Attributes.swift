@@ -20,8 +20,6 @@ extension NSAttributedString {
     
     var fullRange: NSRange {
         return NSRange(location: 0, length: length)
-        
-        
     }
     
     /// Returns an NSAttributedString object initialized with a given string and attribute resolver.

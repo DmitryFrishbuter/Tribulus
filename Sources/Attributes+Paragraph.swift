@@ -23,7 +23,7 @@ extension Attributes {
     }
     
     var paragraphStyle: NSParagraphStyle? {
-        guard !paragraphAttributes.flatMap({ $0 }).isEmpty else {
+        guard !paragraphAttributes.compactMap({ $0 }).isEmpty else {
             return nil
         }
         let paragraphStyle = NSMutableParagraphStyle()

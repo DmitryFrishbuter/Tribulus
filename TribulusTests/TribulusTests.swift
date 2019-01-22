@@ -8,40 +8,28 @@
 import XCTest
 @testable import Tribulus
 
-extension NSRange: Hashable {
-    public var hashValue: Int {
-        return self.location ^ self.length
-    }
-}
-
-extension NSRange: Equatable {
-    static public func ==(lhs: NSRange, rhs: NSRange) -> Bool {
-        return lhs.location == rhs.location && lhs.length == rhs.length
-    }
-}
-
 class TribulusTests: XCTestCase {
     
     var defaultAttributes: Attributes {
         
         var rawAttributes: RawAttributes = [:]
-        rawAttributes[NSBackgroundColorAttributeName] = UIColor.red
-        rawAttributes[NSBaselineOffsetAttributeName] = NSNumber(floatLiteral: 10.1)
-        rawAttributes[NSForegroundColorAttributeName] = UIColor.green
-        rawAttributes[NSVerticalGlyphFormAttributeName] = 1
-        rawAttributes[NSExpansionAttributeName] = NSNumber(floatLiteral: 11.1)
-        rawAttributes[NSFontAttributeName] = UIFont.systemFont(ofSize: 10, weight: UIFontWeightBold)
-        rawAttributes[NSKernAttributeName] = NSNumber(floatLiteral: 0.8)
-        rawAttributes[NSLigatureAttributeName] = 1
-        rawAttributes[NSStrikethroughStyleAttributeName] = NSUnderlineStyle.patternDashDot.rawValue
-        rawAttributes[NSStrikethroughColorAttributeName] = UIColor.cyan
-        rawAttributes[NSStrokeWidthAttributeName] = NSNumber(floatLiteral: 2.1)
-        rawAttributes[NSStrokeColorAttributeName] = UIColor.blue
-        rawAttributes[NSObliquenessAttributeName] = NSNumber(floatLiteral: 14.5)
-        rawAttributes[NSTextEffectAttributeName] = NSTextEffectLetterpressStyle
-        rawAttributes[NSUnderlineStyleAttributeName] = NSUnderlineStyle.patternSolid.rawValue
-        rawAttributes[NSUnderlineColorAttributeName] = UIColor.brown
-        rawAttributes[NSLinkAttributeName] = URL(string: "test.com")
+        rawAttributes[.backgroundColor] = UIColor.red
+        rawAttributes[.baselineOffset] = 10.1
+        rawAttributes[.foregroundColor] = UIColor.green
+        rawAttributes[.verticalGlyphForm] = 1
+        rawAttributes[.expansion] = 11.1
+        rawAttributes[.font] = UIFont.systemFont(ofSize: 10, weight: .bold)
+        rawAttributes[.kern] = 0.8
+        rawAttributes[.ligature] = NSNumber(integerLiteral: 1)
+        rawAttributes[.strikethroughStyle] = NSUnderlineStyle.patternDashDot.rawValue
+        rawAttributes[.strikethroughColor] = UIColor.cyan
+        rawAttributes[.strokeWidth] = NSNumber(floatLiteral: 2.1)
+        rawAttributes[.strokeColor] = UIColor.blue
+        rawAttributes[.obliqueness] = NSNumber(floatLiteral: 14.5)
+        rawAttributes[.textEffect] = NSAttributedString.TextEffectStyle.letterpressStyle.rawValue
+        rawAttributes[.underlineStyle] = NSUnderlineStyle.patternDot.rawValue
+        rawAttributes[.underlineColor] = UIColor.brown
+        rawAttributes[.link] = URL(string: "test.com")
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 10.2
@@ -58,7 +46,7 @@ class TribulusTests: XCTestCase {
         paragraphStyle.hyphenationFactor = 3.4
         paragraphStyle.allowsDefaultTighteningForTruncation = true
         
-        rawAttributes[NSParagraphStyleAttributeName] = paragraphStyle
+        rawAttributes[.paragraphStyle] = paragraphStyle
         
         let attributes = Attributes(rawAttributes: rawAttributes)
         return attributes
@@ -78,23 +66,23 @@ class TribulusTests: XCTestCase {
         let testString = "Foo"
         
         var expectedAttributes: RawAttributes = [:]
-        expectedAttributes[NSBackgroundColorAttributeName] = defaultAttributes.backgroundColor
-        expectedAttributes[NSBaselineOffsetAttributeName] = defaultAttributes.baselineOffset
-        expectedAttributes[NSForegroundColorAttributeName] = defaultAttributes.color
-        expectedAttributes[NSVerticalGlyphFormAttributeName] = defaultAttributes.direction!.rawValue
-        expectedAttributes[NSExpansionAttributeName] = defaultAttributes.expansion
-        expectedAttributes[NSFontAttributeName] = defaultAttributes.font
-        expectedAttributes[NSKernAttributeName] = defaultAttributes.kern
-        expectedAttributes[NSLigatureAttributeName] = defaultAttributes.ligature! ? 1 : 0
-        expectedAttributes[NSStrikethroughStyleAttributeName] = defaultAttributes.strikethroughStyle!.rawValue
-        expectedAttributes[NSStrikethroughColorAttributeName] = defaultAttributes.strikethroughColor
-        expectedAttributes[NSStrokeWidthAttributeName] = defaultAttributes.strokeWidth
-        expectedAttributes[NSStrokeColorAttributeName] = defaultAttributes.strokeColor
-        expectedAttributes[NSObliquenessAttributeName] = defaultAttributes.obliqueness
-        expectedAttributes[NSTextEffectAttributeName] = defaultAttributes.textEffect!.rawValue
-        expectedAttributes[NSUnderlineStyleAttributeName] = defaultAttributes.underlineStyle!.rawValue
-        expectedAttributes[NSUnderlineColorAttributeName] = defaultAttributes.underlineColor
-        expectedAttributes[NSLinkAttributeName] = defaultAttributes.URL
+        expectedAttributes[.backgroundColor] = defaultAttributes.backgroundColor
+        expectedAttributes[.baselineOffset] = defaultAttributes.baselineOffset
+        expectedAttributes[.foregroundColor] = defaultAttributes.color
+        expectedAttributes[.verticalGlyphForm] = defaultAttributes.direction!.rawValue
+        expectedAttributes[.expansion] = defaultAttributes.expansion
+        expectedAttributes[.font] = defaultAttributes.font
+        expectedAttributes[.kern] = defaultAttributes.kern
+        expectedAttributes[.ligature] = defaultAttributes.ligature! ? 1 : 0
+        expectedAttributes[.strikethroughStyle] = defaultAttributes.strikethroughStyle!.rawValue
+        expectedAttributes[.strikethroughColor] = defaultAttributes.strikethroughColor
+        expectedAttributes[.strokeWidth] = defaultAttributes.strokeWidth
+        expectedAttributes[.strokeColor] = defaultAttributes.strokeColor
+        expectedAttributes[.obliqueness] = defaultAttributes.obliqueness
+        expectedAttributes[.textEffect] = defaultAttributes.textEffect!.rawValue
+        expectedAttributes[.underlineStyle] = defaultAttributes.underlineStyle!.rawValue
+        expectedAttributes[.underlineColor] = defaultAttributes.underlineColor
+        expectedAttributes[.link] = defaultAttributes.URL
         
         let testParagraphStyle = NSMutableParagraphStyle()
         testParagraphStyle.lineSpacing = CGFloat(defaultAttributes.lineSpacing!)
@@ -111,7 +99,7 @@ class TribulusTests: XCTestCase {
         testParagraphStyle.hyphenationFactor = defaultAttributes.hyphenationFactor!
         testParagraphStyle.allowsDefaultTighteningForTruncation = defaultAttributes.allowsTighteningForTruncation!
         
-        expectedAttributes[NSParagraphStyleAttributeName] = testParagraphStyle
+        expectedAttributes[.paragraphStyle] = testParagraphStyle
         
         let attributedString = NSAttributedString(string: testString) {
             $0.backgroundColor = defaultAttributes.backgroundColor
@@ -149,24 +137,24 @@ class TribulusTests: XCTestCase {
         XCTAssertEqual(testString, attributedString.string)
         
         if let existingAttributes = attributedString.existingAttributes {
-            XCTAssertEqual(existingAttributes[NSBackgroundColorAttributeName] as! UIColor, expectedAttributes[NSBackgroundColorAttributeName] as! UIColor)
-            XCTAssertEqual(existingAttributes[NSBaselineOffsetAttributeName] as! Float, expectedAttributes[NSBaselineOffsetAttributeName] as! Float)
-            XCTAssertEqual(existingAttributes[NSForegroundColorAttributeName] as! UIColor, expectedAttributes[NSForegroundColorAttributeName] as! UIColor)
-            XCTAssertEqual(existingAttributes[NSVerticalGlyphFormAttributeName] as! Int, expectedAttributes[NSVerticalGlyphFormAttributeName] as! Int)
-            XCTAssertEqual(existingAttributes[NSExpansionAttributeName] as! Float, expectedAttributes[NSExpansionAttributeName] as! Float)
-            XCTAssertEqual(existingAttributes[NSFontAttributeName] as! UIFont, expectedAttributes[NSFontAttributeName] as! UIFont)
-            XCTAssertEqual(existingAttributes[NSKernAttributeName] as! Float, expectedAttributes[NSKernAttributeName] as! Float)
-            XCTAssertEqual(existingAttributes[NSLigatureAttributeName] as! Int, expectedAttributes[NSLigatureAttributeName] as! Int)
-            XCTAssertEqual(existingAttributes[NSStrikethroughStyleAttributeName] as! Int, expectedAttributes[NSStrikethroughStyleAttributeName] as! Int)
-            XCTAssertEqual(existingAttributes[NSStrikethroughColorAttributeName] as! UIColor, expectedAttributes[NSStrikethroughColorAttributeName] as! UIColor)
-            XCTAssertEqual(existingAttributes[NSStrokeWidthAttributeName] as! Float, expectedAttributes[NSStrokeWidthAttributeName] as! Float)
-            XCTAssertEqual(existingAttributes[NSStrokeColorAttributeName] as! UIColor, expectedAttributes[NSStrokeColorAttributeName] as! UIColor)
-            XCTAssertEqual(existingAttributes[NSObliquenessAttributeName] as! Float, expectedAttributes[NSObliquenessAttributeName] as! Float)
-            XCTAssertEqual(existingAttributes[NSTextEffectAttributeName] as! String, expectedAttributes[NSTextEffectAttributeName] as! String)
-            XCTAssertEqual(existingAttributes[NSUnderlineStyleAttributeName] as! Int, expectedAttributes[NSUnderlineStyleAttributeName] as! Int)
-            XCTAssertEqual(existingAttributes[NSUnderlineColorAttributeName] as! UIColor, expectedAttributes[NSUnderlineColorAttributeName] as! UIColor)
-            XCTAssertEqual(existingAttributes[NSLinkAttributeName] as! URL, expectedAttributes[NSLinkAttributeName] as! URL)
-            XCTAssertEqual(existingAttributes[NSParagraphStyleAttributeName] as! NSParagraphStyle, expectedAttributes[NSParagraphStyleAttributeName] as! NSParagraphStyle)
+            XCTAssertEqual(existingAttributes[.backgroundColor] as! UIColor, expectedAttributes[.backgroundColor] as! UIColor)
+            XCTAssertEqual(existingAttributes[.baselineOffset] as! Double, expectedAttributes[.baselineOffset] as! Double)
+            XCTAssertEqual(existingAttributes[.foregroundColor] as! UIColor, expectedAttributes[.foregroundColor] as! UIColor)
+            XCTAssertEqual(existingAttributes[.verticalGlyphForm] as! Int, expectedAttributes[.verticalGlyphForm] as! Int)
+            XCTAssertEqual(existingAttributes[.expansion] as! Double, expectedAttributes[.expansion] as! Double)
+            XCTAssertEqual(existingAttributes[.font] as! UIFont, expectedAttributes[.font] as! UIFont)
+            XCTAssertEqual(existingAttributes[.kern] as! Double, expectedAttributes[.kern] as! Double)
+            XCTAssertEqual(existingAttributes[.ligature] as! Int, expectedAttributes[.ligature] as! Int)
+            XCTAssertEqual(existingAttributes[.strikethroughStyle] as! Int, expectedAttributes[.strikethroughStyle] as! Int)
+            XCTAssertEqual(existingAttributes[.strikethroughColor] as! UIColor, expectedAttributes[.strikethroughColor] as! UIColor)
+            XCTAssertEqual(existingAttributes[.strokeWidth] as! Double, expectedAttributes[.strokeWidth] as! Double)
+            XCTAssertEqual(existingAttributes[.strokeColor] as! UIColor, expectedAttributes[.strokeColor] as! UIColor)
+            XCTAssertEqual(existingAttributes[.obliqueness] as! Double, expectedAttributes[.obliqueness] as! Double)
+            XCTAssertEqual(existingAttributes[.textEffect] as! String, expectedAttributes[.textEffect] as! String)
+            XCTAssertEqual(existingAttributes[.underlineStyle] as! Int, expectedAttributes[.underlineStyle] as! Int)
+            XCTAssertEqual(existingAttributes[.underlineColor] as! UIColor, expectedAttributes[.underlineColor] as! UIColor)
+            XCTAssertEqual(existingAttributes[.link] as! URL, expectedAttributes[.link] as! URL)
+            XCTAssertEqual(existingAttributes[.paragraphStyle] as! NSParagraphStyle, expectedAttributes[.paragraphStyle] as! NSParagraphStyle)
         }
         else {
             XCTAssertNotNil(attributedString.existingAttributes)
@@ -184,8 +172,8 @@ class TribulusTests: XCTestCase {
                 $0.color = .green
             }
         XCTAssertEqual(attributedString.string, expectedString)
-        let firstColor = attributedString.attribute(NSForegroundColorAttributeName, at: 0, effectiveRange: nil) as? UIColor
-        let secondColor = attributedString.attribute(NSForegroundColorAttributeName, at: 3, effectiveRange: nil) as? UIColor
+        let firstColor = attributedString.attribute(.foregroundColor, at: 0, effectiveRange: nil) as? UIColor
+        let secondColor = attributedString.attribute(.foregroundColor, at: 3, effectiveRange: nil) as? UIColor
         XCTAssertEqual(firstColor, UIColor.red)
         XCTAssertEqual(secondColor, UIColor.green)
     }
@@ -201,9 +189,9 @@ class TribulusTests: XCTestCase {
                 $0.color = .green
             }
         XCTAssertEqual(attributedString.string, expectedString)
-        let firstColor = attributedString.attribute(NSForegroundColorAttributeName, at: 0, effectiveRange: nil) as? UIColor
-        let secondColor = attributedString.attribute(NSForegroundColorAttributeName, at: 4, effectiveRange: nil) as? UIColor
-        let thirdColor = attributedString.attribute(NSForegroundColorAttributeName, at: 7, effectiveRange: nil) as? UIColor
+        let firstColor = attributedString.attribute(.foregroundColor, at: 0, effectiveRange: nil) as? UIColor
+        let secondColor = attributedString.attribute(.foregroundColor, at: 4, effectiveRange: nil) as? UIColor
+        let thirdColor = attributedString.attribute(.foregroundColor, at: 7, effectiveRange: nil) as? UIColor
         XCTAssertEqual(firstColor, UIColor.red)
         XCTAssertEqual(secondColor, UIColor.green)
         XCTAssertEqual(thirdColor, UIColor.red)
@@ -218,7 +206,7 @@ class TribulusTests: XCTestCase {
         attributedString.append(image: testImage, bounds: testBounds)
         let testStringRange = (attributedString.string as NSString).range(of: testString)
         let imageLocation = testStringRange.location + testStringRange.length
-        let attachment = attributedString.attribute(NSAttachmentAttributeName, at: imageLocation, effectiveRange: nil) as! NSTextAttachment
+        let attachment = attributedString.attribute(.attachment, at: imageLocation, effectiveRange: nil) as! NSTextAttachment
         XCTAssertEqual(attachment.image, testImage)
         XCTAssertEqual(attachment.bounds, testBounds)
     }
@@ -230,7 +218,7 @@ class TribulusTests: XCTestCase {
         let testBounds = CGRect(x: 10, y: 20, width: 30, height: 40)
         let imageLocation = 0
         attributedString.insert(image: testImage, bounds: testBounds, at: imageLocation)
-        let attachment = attributedString.attribute(NSAttachmentAttributeName, at: imageLocation, effectiveRange: nil) as! NSTextAttachment
+        let attachment = attributedString.attribute(.attachment, at: imageLocation, effectiveRange: nil) as! NSTextAttachment
         XCTAssertEqual(attachment.image, testImage)
         XCTAssertEqual(attachment.bounds, testBounds)
     }
@@ -243,10 +231,8 @@ class TribulusTests: XCTestCase {
         colors.forEach { (range, color) in
             attributedString.resolveAttributes(in: range) { $0.color = color }
         }
-        attributedString.enumerateAttribute(NSForegroundColorAttributeName,
-                                            in: attributedString.fullRange,
-                                            options: []) { (value, range, stop) in
-                                                XCTAssertEqual(value as? UIColor, colors[range])
+        attributedString.enumerateAttribute(.foregroundColor, in: attributedString.fullRange, options: []) { (value, range, stop) in
+            XCTAssertEqual(value as? UIColor, colors[range])
         }
     }
     
@@ -256,13 +242,6 @@ class TribulusTests: XCTestCase {
             $0.alignment = .center
         }
         XCTAssertNil(attributedString.existingAttributes)
-    }
-    
-    func testThatTextEffectIsBeingInitializedIncorrectly() {
-        let textEffect = Attributes.TextEffect(rawValue: NSTextEffectLetterpressStyle)
-        let nilTextEffect = Attributes.TextEffect(rawValue: "Foo")
-        XCTAssertEqual(textEffect, .letterpress)
-        XCTAssertNil(nilTextEffect)
     }
     
     // MARK: - UIFontDescriptorSymbolicTraits Convenience
