@@ -27,7 +27,7 @@ $ brew install carthage
 To integrate Tribulus into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "rosberry/Tribulus"
+github "DmitryFrishbuter/Tribulus"
 ```
 
 Run `carthage update` to build the framework and drag the built `Tribulus.framework` into your Xcode project.
