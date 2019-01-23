@@ -27,7 +27,7 @@ $ brew install carthage
 To integrate Tribulus into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "rosberry/Tribulus"
+github "DmitryFrishbuter/Tribulus"
 ```
 
 Run `carthage update` to build the framework and drag the built `Tribulus.framework` into your Xcode project.
@@ -43,12 +43,12 @@ Drag `Sources` folder from [latest release](https://github.com/rosberry/Tribulus
 To initialize attributed string with required attributes, you can use following code:
 
 ```swift
-let attributedString = NSAttributedString(string: testString) {
-		$0.font = .systemFont(ofSize: 10, weight: UIFontWeightBold)
-        	$0.backgroundColor = .green
-        	$0.color = .black
-        	$0.baselineOffset = 14.0
-    	    }
+let attributedString = NSAttributedString(string: "Foo", style:
+    TextStyle.font(.systemFont(ofSize: 14))
+	     .color(.black)
+	     .backgroundColor(.cyan)
+	     .baselineOffset(14.0)
+)
 ```
 
 ### Appending
@@ -58,22 +58,17 @@ let attributedString = NSAttributedString(string: testString) {
 Here's a code for appending new attributed string:
 
 ```swift
-let attributedString = NSMutableAttributedString(string: "Foo")
-attributedString
-    	.append(string: " Bar") {
-            $0.color = .red
-        }
-        .append(string: " Baz") {
-            $0.direction = .horizontal
-        }
+let mAttributedString = NSAttributedString(string: "Foo")
+	.asMutable()
+	.append(" Bar", with: .color(.red))
+	.append(" Baz", with: .direction(.horizontal))
 ```
 
 And in the same simple way you can append any image:
 
 ```swift
 let attributedString = NSMutableAttributedString(string: "Foo")
-attributedString.append(image: UIImage(named: "Bar"), 
-    			bounds: CGRect(x: 0, y: 0, width: 40, height: 40))
+attributedString.append(UIImage(named: "Bar")!, bounds: CGRect(x: 0, y: 0, width: 40, height: 40))
 ```
 ### Insertion
 
@@ -81,16 +76,13 @@ Moreover **Tribulus** allows you to insert newly configured attributed string at
 
 ```swift
 let attributedString = NSMutableAttributedString(string: "Foo  Baz")
- attributedString
-	.insert(string: "Bar", at: 4) {
-            $0.textEffect = .letterpress
-        }
+attributedString.insert("Bar", with: .textEffect(.letterpressStyle), at: 4)
 ```
 
 or to insert an image:
 
 ```swift
-attributedString.insert(image: UIImage(named: "Bar"), 
+attributedString.insert(UIImage(named: "Bar")!, 
 			bounds: CGRect(x: 0, y: 0, width: 40, height: 40), 
                         at: 0)
 ```
@@ -100,10 +92,8 @@ attributedString.insert(image: UIImage(named: "Bar"),
 Instead on creating `UIFontDescriptorSymbolicTraits` you can just set **bold** and **italic** traits using `Attributes` object properties:
 
 ```swift
-let attributedString = NSAttributedString(string: testString) {
-		$0.bold = true
-    		$0.italic = true
-	    }
+let attributedString = NSMutableAttributedString(string: testString)
+attributedString.set(TextStyle.bold(true).italic(true))
 ```
 
 # Author 🖌
