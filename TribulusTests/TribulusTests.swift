@@ -165,7 +165,7 @@ class TribulusTests: XCTestCase {
         let stringToAppend = " Bar"
         let expectedString = "Foo Bar"
         let attributedString = NSMutableAttributedString(string: testString, style: .color(.red))
-            .append(string: stringToAppend, with: .color(.green))
+            .append(stringToAppend, with: .color(.green))
 
         XCTAssertEqual(attributedString.string, expectedString)
         let firstColor = attributedString.attribute(.foregroundColor, at: 0, effectiveRange: nil) as? UIColor
@@ -179,7 +179,7 @@ class TribulusTests: XCTestCase {
         let stringToInsert = "Bar"
         let expectedString = "Foo Bar Baz"
         let attributedString = NSMutableAttributedString(string: testString, style: .color(.red))
-            .insert(string: stringToInsert, with: .color(.green), at: 4)
+            .insert(stringToInsert, with: .color(.green), at: 4)
         XCTAssertEqual(attributedString.string, expectedString)
         let firstColor = attributedString.attribute(.foregroundColor, at: 0, effectiveRange: nil) as? UIColor
         let secondColor = attributedString.attribute(.foregroundColor, at: 4, effectiveRange: nil) as? UIColor
@@ -189,13 +189,12 @@ class TribulusTests: XCTestCase {
         XCTAssertEqual(thirdColor, UIColor.red)
     }
     
-    
     func testThatCorrectlyAppendsImage() {
         let testString = "Foo"
         let attributedString = NSMutableAttributedString(string: testString)
         let testImage = UIImage()
         let testBounds = CGRect(x: 10, y: 20, width: 30, height: 40)
-        attributedString.append(image: testImage, bounds: testBounds)
+        attributedString.append(testImage, bounds: testBounds)
         let testStringRange = (attributedString.string as NSString).range(of: testString)
         let imageLocation = testStringRange.location + testStringRange.length
         let attachment = attributedString.attribute(.attachment, at: imageLocation, effectiveRange: nil) as! NSTextAttachment
@@ -209,55 +208,72 @@ class TribulusTests: XCTestCase {
         let testImage = UIImage()
         let testBounds = CGRect(x: 10, y: 20, width: 30, height: 40)
         let imageLocation = 0
-        attributedString.insert(image: testImage, bounds: testBounds, at: imageLocation)
+        attributedString.insert(testImage, bounds: testBounds, at: imageLocation)
         let attachment = attributedString.attribute(.attachment, at: imageLocation, effectiveRange: nil) as! NSTextAttachment
         XCTAssertEqual(attachment.image, testImage)
         XCTAssertEqual(attachment.bounds, testBounds)
     }
     
-    func testThatCorrectlyResolvesAttributes() {
+    func testThatCorrectlySetsStyle() {
         let attributedString = NSMutableAttributedString(string: "Foo")
         let colors: [NSRange: UIColor] = [NSRange(location: 0, length: 1): .red,
                                           NSRange(location: 1, length: 1): .green,
                                           NSRange(location: 2, length: 1): .blue]
         colors.forEach { (range, color) in
-            attributedString.applyStyle(.color(color), in: range)
+            attributedString.set(.color(color), in: range)
         }
         attributedString.enumerateAttribute(.foregroundColor, in: attributedString.fullRange, options: []) { (value, range, stop) in
             XCTAssertEqual(value as? UIColor, colors[range])
         }
     }
+
+    func testThatCorrectlyAddsStyle() {
+        let attributedString = NSMutableAttributedString(string: "Foo")
+        attributedString.set(TextStyle.bold(true).italic(true))
+
+        let attributedString = NSAttributedString(string: "Foo", style: .baselineOffset(0.4))
+        attributedString.asMutable().add(.baselineOffset(0.8), in: NSRange(location: 1, length: 1))
+        attributedString.enumerateAttribute(.baselineOffset, in: attributedString.fullRange, options: []) { (value, range, stop) in
+            if range == NSRange(location: 0, length: 1) {
+                XCTAssertEqual(value as? Double, 0.4)
+            } else if range == NSRange(location: 1, length: 1) {
+                XCTAssertEqual(value as? Double, 0.8)
+            } else if range == NSRange(location: 2, length: 1) {
+                XCTAssertEqual(value as? Double, 0.4)
+            }
+        }
+    }
     
     func testThatEmptyStringHasNoAttributes() {
         let attributedString = NSMutableAttributedString(string: "")
-        attributedString.applyStyle(.alignment(.center), in: attributedString.fullRange)
+        attributedString.set(.alignment(.center), in: attributedString.fullRange)
         XCTAssertNil(attributedString.existingAttributes)
     }
     
     // MARK: - UIFontDescriptorSymbolicTraits Convenience
     
     func testThatCorrectlySetsFontSize() {
-        let attributes = TextStyle()
-        attributes.fontSize = 16
-        XCTAssertEqual(attributes.fontSize, 16)
-        attributes.fontSize = nil
-        XCTAssertEqual(attributes.fontSize, 12)
+        let style = TextStyle()
+        style.fontSize = 16
+        XCTAssertEqual(style.fontSize, 16)
+        style.fontSize = nil
+        XCTAssertEqual(style.fontSize, 12)
     }
     
     func testThatCorrectlySetsBold() {
-        let attributes = TextStyle()
-        attributes.bold = true
-        XCTAssertTrue(attributes.bold)
-        attributes.bold = false
-        XCTAssertFalse(attributes.bold)
+        let style = TextStyle()
+        style.bold = true
+        XCTAssertTrue(style.bold)
+        style.bold = false
+        XCTAssertFalse(style.bold)
     }
     
     func testThatCorrectlySetsItalic() {
-        let attributes = TextStyle()
-        attributes.italic = true
-        XCTAssertTrue(attributes.italic)
-        attributes.italic = false
-        XCTAssertFalse(attributes.italic)
+        let style = TextStyle()
+        style.italic = true
+        XCTAssertTrue(style.italic)
+        style.italic = false
+        XCTAssertFalse(style.italic)
     }
     
     // MARK: - NSParagraphStyle Mapping

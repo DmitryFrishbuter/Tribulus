@@ -12,11 +12,12 @@
 		0A3BCDAB1F580439004E77B7 /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BCDA41F580439004E77B7 /* TextStyle.swift */; };
 		0A3BCDAD1F580439004E77B7 /* TextStyle+Paragraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BCDA51F580439004E77B7 /* TextStyle+Paragraph.swift */; };
 		0A3BCDAF1F580439004E77B7 /* TextStyle+Raw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BCDA61F580439004E77B7 /* TextStyle+Raw.swift */; };
-		0A3BCDB11F580439004E77B7 /* NSAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BCDA71F580439004E77B7 /* NSAttributedString+Attributes.swift */; };
+		0A3BCDB11F580439004E77B7 /* NSAttributedString+TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BCDA71F580439004E77B7 /* NSAttributedString+TextStyle.swift */; };
 		0A3BCDB51F580439004E77B7 /* NSParagraphStyle+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3BCDA91F580439004E77B7 /* NSParagraphStyle+Map.swift */; };
 		0A3BCDB91F58051B004E77B7 /* Tribulus.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A3BCDA01F58036F004E77B7 /* Tribulus.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6D6D7EAA21F78234000FFA4D /* TextStyle+Chaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6D7EA921F78234000FFA4D /* TextStyle+Chaining.swift */; };
 		6D6D7EAC21F787CF000FFA4D /* TextStyle+Static.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6D7EAB21F787CF000FFA4D /* TextStyle+Static.swift */; };
+		6D84865521F838C9008D07C9 /* NSAttributedString+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D84865421F838C9008D07C9 /* NSAttributedString+Conversion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,10 +40,11 @@
 		0A3BCDA41F580439004E77B7 /* TextStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
 		0A3BCDA51F580439004E77B7 /* TextStyle+Paragraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextStyle+Paragraph.swift"; sourceTree = "<group>"; };
 		0A3BCDA61F580439004E77B7 /* TextStyle+Raw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextStyle+Raw.swift"; sourceTree = "<group>"; };
-		0A3BCDA71F580439004E77B7 /* NSAttributedString+Attributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Attributes.swift"; sourceTree = "<group>"; };
+		0A3BCDA71F580439004E77B7 /* NSAttributedString+TextStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+TextStyle.swift"; sourceTree = "<group>"; };
 		0A3BCDA91F580439004E77B7 /* NSParagraphStyle+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+Map.swift"; sourceTree = "<group>"; };
 		6D6D7EA921F78234000FFA4D /* TextStyle+Chaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextStyle+Chaining.swift"; sourceTree = "<group>"; };
 		6D6D7EAB21F787CF000FFA4D /* TextStyle+Static.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextStyle+Static.swift"; sourceTree = "<group>"; };
+		6D84865421F838C9008D07C9 /* NSAttributedString+Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Conversion.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +103,8 @@
 				6D6D7EAB21F787CF000FFA4D /* TextStyle+Static.swift */,
 				0A3BCDA51F580439004E77B7 /* TextStyle+Paragraph.swift */,
 				0A3BCDA61F580439004E77B7 /* TextStyle+Raw.swift */,
-				0A3BCDA71F580439004E77B7 /* NSAttributedString+Attributes.swift */,
+				6D84865421F838C9008D07C9 /* NSAttributedString+Conversion.swift */,
+				0A3BCDA71F580439004E77B7 /* NSAttributedString+TextStyle.swift */,
 				0A3BCDA91F580439004E77B7 /* NSParagraphStyle+Map.swift */,
 			);
 			path = Sources;
@@ -220,11 +223,12 @@
 			files = (
 				6D6D7EAC21F787CF000FFA4D /* TextStyle+Static.swift in Sources */,
 				0A3BCDB51F580439004E77B7 /* NSParagraphStyle+Map.swift in Sources */,
-				0A3BCDB11F580439004E77B7 /* NSAttributedString+Attributes.swift in Sources */,
+				0A3BCDB11F580439004E77B7 /* NSAttributedString+TextStyle.swift in Sources */,
 				0A3BCDAB1F580439004E77B7 /* TextStyle.swift in Sources */,
 				6D6D7EAA21F78234000FFA4D /* TextStyle+Chaining.swift in Sources */,
 				0A3BCDAD1F580439004E77B7 /* TextStyle+Paragraph.swift in Sources */,
 				0A3BCDAF1F580439004E77B7 /* TextStyle+Raw.swift in Sources */,
+				6D84865521F838C9008D07C9 /* NSAttributedString+Conversion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

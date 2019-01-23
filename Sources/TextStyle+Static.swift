@@ -185,4 +185,22 @@ extension TextStyle {
         attributes.tailIndent = tailIndent
         return attributes
     }
+
+    static func fontSize(_ size: CGFloat) -> TextStyle {
+        let attributes = TextStyle()
+        attributes.fontSize = size
+        return attributes
+    }
+
+    static func bold(_ bold: Bool) -> TextStyle {
+        let attributes = TextStyle()
+        attributes.bold = bold
+        return attributes
+    }
+
+    static func italic(_ italic: Bool) -> TextStyle {
+        let attributes = TextStyle()
+        attributes.italic = italic
+        return attributes
+    }
 }

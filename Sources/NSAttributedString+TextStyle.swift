@@ -17,11 +17,11 @@ extension NSAttributedString {
         return NSRange(location: 0, length: length)
     }
     
-    /// Returns an NSAttributedString object initialized with a given string and attribute resolver.
+    /// Returns an `NSAttributedString` object initialized with a given string and text style.
     ///
     /// - Parameters:
     ///   - string: The string for the new attributed string.
-    ///   - attributes: Attributes for the new attributed string.
+    ///   - style: Text style for the new attributed string.
     public convenience init(string: String, style: TextStyle) {
         self.init(string: string, attributes: style.rawAttributes)
     }
@@ -34,9 +34,9 @@ public extension NSMutableAttributedString {
     ///
     /// - Parameters:
     ///   - string: The string whose characters and attributes are added.
-    ///   - attributes: Attributes for appended string.
+    ///   - style: Text style for appended string.
     @discardableResult
-    public func append(string: String, with style: TextStyle) -> NSMutableAttributedString {
+    public func append(_ string: String, with style: TextStyle) -> NSMutableAttributedString {
         let attributedString = NSAttributedString(string: string, attributes: style.rawAttributes)
         append(attributedString)
         return self
@@ -46,9 +46,10 @@ public extension NSMutableAttributedString {
     ///
     /// - Parameters:
     ///   - string: The string whose characters are inserted.
-    ///   - attributes: Attributes for inserted string.
+    ///   - style: Text style for inserted string.
+    ///   - location: The index at which the characters and style are inserted.
     @discardableResult
-    public func insert(string: String, with style: TextStyle, at location: Int) -> NSMutableAttributedString {
+    public func insert(_ string: String, with style: TextStyle, at location: Int) -> NSMutableAttributedString {
         let attributedString = NSAttributedString(string: string, attributes: style.rawAttributes)
         insert(attributedString, at: location)
         return self
@@ -60,7 +61,7 @@ public extension NSMutableAttributedString {
     ///   - image: Image representing the text attachment contents.
     ///   - bounds: The bounds rectangle origin is at the current glyph location on the text baseline. The default value is CGRectZero.
     @discardableResult
-    public func append(image: UIImage, bounds: CGRect = .zero) -> NSMutableAttributedString {
+    public func append(_ image: UIImage, bounds: CGRect = .zero) -> NSMutableAttributedString {
         let attachment = NSTextAttachment()
         attachment.image = image
         attachment.bounds = bounds
@@ -75,7 +76,7 @@ public extension NSMutableAttributedString {
     ///   - bounds: The bounds rectangle origin is at the current glyph location on the text baseline. The default value is CGRectZero.
     ///   - location: The index at which the image is inserted.
     @discardableResult
-    public func insert(image: UIImage, bounds: CGRect = .zero, at location: Int) -> NSMutableAttributedString {
+    public func insert(_ image: UIImage, bounds: CGRect = .zero, at location: Int) -> NSMutableAttributedString {
         let attachment = NSTextAttachment()
         attachment.image = image
         attachment.bounds = bounds
@@ -83,14 +84,44 @@ public extension NSMutableAttributedString {
         return self
     }
     
+    /// This text style replaces any text style previously associated with the characters in aRange.
+    /// Raises an `rangeException` if any part of aRange lies beyond the end of the receiver’s characters.
+    ///
+    /// - Parameters:
+    ///   - style: Text style for specified range of characters.
+    ///   - range: The range of characters to which the specified attributes apply.
+    @discardableResult
+    public func set(_ style: TextStyle, in range: NSRange) -> NSMutableAttributedString {
+        setAttributes(style.rawAttributes, range: range)
+        return self
+    }
+
+    /// This text style replaces any text style previously associated with the string.
+    ///
+    /// - Parameters:
+    ///   - style: Text style for full range of characters.
+    @discardableResult
+    public func set(_ style: TextStyle) -> NSMutableAttributedString {
+        return set(style, in: fullRange)
+    }
+
     /// Adds the attributes configured with `TextStyle` to the characters in the specified range.
     ///
     /// - Parameters:
+    ///   - style: Text style for specified range of characters.
     ///   - range: The range of characters to which the specified attributes apply.
-    ///   - resolver: Closure, that allows to configure attributes for specified range of characters.
     @discardableResult
-    public func applyStyle(_ style: TextStyle, in range: NSRange) -> NSMutableAttributedString {
-        setAttributes(style.rawAttributes, range: range)
+    public func add(_ style: TextStyle, in range: NSRange) -> NSMutableAttributedString {
+        addAttributes(style.rawAttributes, range: range)
         return self
+    }
+
+    /// Adds the attributes configured with `TextStyle` to the string.
+    ///
+    /// - Parameters:
+    ///   - style: Text style for full range of characters.
+    @discardableResult
+    public func add(_ style: TextStyle) -> NSMutableAttributedString {
+        return add(style, in: fullRange)
     }
 }
